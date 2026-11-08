@@ -338,7 +338,20 @@
         grid-template-columns: 1fr;
       }
     }
-  </style>
+  .illustration-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.illustration-link:hover {
+  transform: translateY(-4px);
+}
+
+.illustration-link:focus-visible {
+  outline: 3px solid #65accb;
+  outline-offset: 4px;
+}</style>
 </head>
 
 <body>
@@ -410,7 +423,7 @@
           <span class="coming-soon">準備中</span>
         </article>
 
-        <article class="content-card">
+       <a href="illustrations.html" class="content-card illustration-link">
           <span class="card-number">02 / ILLUSTRATION</span>
           <div class="card-icon">🎨</div>
           <h3>イラスト</h3>
@@ -418,8 +431,8 @@
             キャラクターや風景など、
             さまざまなイラスト作品。
           </p>
-          <span class="coming-soon">準備中</span>
-        </article>
+         <span class="coming-soon">イラストを見る →</span>
+</a>
 
         <article class="content-card">
           <span class="card-number">03 / VIDEO</span>
