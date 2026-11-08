@@ -1,0 +1,507 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Wind Wing - 結城朱煉の総合創作サイト。自由な翼で、いくつもの世界へ。">
+  <title>Wind Wing｜結城朱煉 Creative Atelier</title>
+
+  <style>
+    :root {
+      --white: #FFFFFF;
+      --gray: #E9EDF0;
+      --light-blue: #DCEAF5;
+      --blue-green: #D9EFEB;
+      --teal: #397D79;
+      --text: #344C5D;
+      --sub-text: #71818D;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        "Yu Gothic",
+        "Meiryo",
+        sans-serif;
+      background: var(--white);
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ヘッダー */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.95);
+      border-bottom: 1px solid var(--gray);
+      backdrop-filter: blur(10px);
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: auto;
+      padding: 15px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: bold;
+      color: var(--teal);
+      letter-spacing: 2px;
+    }
+
+    nav {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+      font-size: 13px;
+    }
+
+    nav a {
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--teal);
+    }
+
+    /* メインビジュアル */
+
+    .hero {
+      background: linear-gradient(
+        135deg,
+        var(--light-blue),
+        var(--white) 55%,
+        var(--blue-green)
+      );
+      padding: 100px 25px 110px;
+      text-align: center;
+    }
+
+    .hero-inner {
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .hero-label {
+      color: var(--teal);
+      font-size: 12px;
+      letter-spacing: 5px;
+      font-weight: bold;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 8vw, 76px);
+      letter-spacing: 4px;
+      margin: 15px 0;
+      color: var(--teal);
+    }
+
+    .hero-copy {
+      font-size: clamp(20px, 4vw, 30px);
+      font-weight: bold;
+      margin: 10px 0 20px;
+    }
+
+    .hero-description {
+      color: var(--sub-text);
+      font-size: 14px;
+    }
+
+    .hero-button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 12px 35px;
+      border-radius: 30px;
+      background: var(--teal);
+      color: var(--white);
+      font-size: 14px;
+      transition: 0.2s;
+    }
+
+    .hero-button:hover {
+      background: var(--text);
+      transform: translateY(-3px);
+    }
+
+    /* 共通セクション */
+
+    .section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 85px 25px;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-heading span {
+      color: var(--teal);
+      font-size: 12px;
+      letter-spacing: 4px;
+      font-weight: bold;
+    }
+
+    .section-heading h2 {
+      font-size: 30px;
+      margin: 5px 0;
+    }
+
+    .section-heading p {
+      color: var(--sub-text);
+      font-size: 13px;
+    }
+
+    /* コンテンツ一覧 */
+
+    .contents-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+/* 5枚のときは下段2枚を中央に配置 */
+@media (min-width: 901px) {
+    .contents-grid:has(> .content-card:nth-child(5):last-child) {
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    .contents-grid:has(> .content-card:nth-child(5):last-child) > .content-card {
+        grid-column: span 2;
+    }
+
+    .contents-grid:has(> .content-card:nth-child(5):last-child) > .content-card:nth-child(4) {
+        grid-column: 2 / span 2;
+    }
+}
+    .content-card {
+      padding: 30px 25px;
+      border-radius: 15px;
+      border: 1px solid var(--gray);
+      background: var(--white);
+      transition: 0.25s;
+    }
+
+    .content-card:nth-child(odd) {
+      background: #F7FAFC;
+    }
+
+    .content-card:nth-child(even) {
+      background: #F5FAF9;
+    }
+
+    .content-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--teal);
+      box-shadow: 0 8px 20px rgba(57, 125, 121, 0.10);
+    }
+
+    .card-number {
+      font-size: 13px;
+      color: var(--teal);
+      letter-spacing: 2px;
+    }
+
+    .card-icon {
+      font-size: 32px;
+      margin: 12px 0 0;
+    }
+
+    .content-card h3 {
+      font-size: 21px;
+      margin: 5px 0;
+    }
+
+    .content-card p {
+      color: var(--sub-text);
+      font-size: 13px;
+      margin: 5px 0 15px;
+    }
+
+    .coming-soon {
+      display: inline-block;
+      padding: 3px 12px;
+      border-radius: 20px;
+      background: var(--light-blue);
+      color: var(--teal);
+      font-size: 11px;
+    }
+
+    /* プロフィール */
+
+    .about {
+      background: var(--gray);
+    }
+
+    .about-inner {
+      max-width: 750px;
+      margin: auto;
+      padding: 70px 25px;
+      text-align: center;
+    }
+
+    .about-box {
+      background: var(--white);
+      border-radius: 15px;
+      padding: 35px;
+    }
+
+    .about-name {
+      font-size: 25px;
+      font-weight: bold;
+      color: var(--teal);
+    }
+
+    .about-text {
+      color: var(--sub-text);
+      font-size: 14px;
+    }
+
+    /* フッター */
+
+    footer {
+      padding: 35px 20px;
+      text-align: center;
+      background: var(--text);
+      color: var(--white);
+    }
+
+    .footer-logo {
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 3px;
+    }
+
+    footer p {
+      font-size: 12px;
+      opacity: 0.75;
+    }
+
+    /* スマートフォン対応 */
+
+    @media (max-width: 700px) {
+      .header-inner {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      nav {
+        justify-content: center;
+        gap: 12px;
+      }
+
+      .hero {
+        padding: 75px 20px;
+      }
+
+      .contents-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .content-card {
+        padding: 20px 15px;
+      }
+
+      .content-card h3 {
+        font-size: 17px;
+      }
+
+      .section {
+        padding: 65px 18px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .contents-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ヘッダー -->
+
+  <header>
+    <div class="header-inner">
+      <a href="#" class="logo">Wind Wing</a>
+
+      <nav>
+        <a href="#home">HOME</a>
+        <a href="#contents">CONTENTS</a>
+        <a href="#about">ABOUT</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- メインビジュアル -->
+
+  <main>
+
+    <section class="hero" id="home">
+      <div class="hero-inner">
+
+        <p class="hero-label">CREATIVE ATELIER</p>
+
+        <h1>Wind Wing</h1>
+
+        <p class="hero-copy">
+          自由な翼で、いくつもの世界へ。
+        </p>
+
+        <p class="hero-description">
+          小説、イラスト、動画、ゲーム、グッズ。
+          <br>
+          さまざまな創作を楽しむ、結城朱煉のアトリエ。
+        </p>
+
+        <a href="#contents" class="hero-button">
+          作品を見る
+        </a>
+
+      </div>
+    </section>
+
+    <!-- コンテンツ -->
+
+    <section class="section" id="contents">
+
+      <div class="section-heading">
+        <span>CONTENTS</span>
+        <h2>創作の世界</h2>
+        <p>
+          Wind Wingで展開する、6つの創作ジャンル。
+        </p>
+      </div>
+
+      <div class="contents-grid">
+
+        <article class="content-card">
+          <span class="card-number">01 / NOVEL</span>
+          <div class="card-icon">📖</div>
+          <h3>小説</h3>
+          <p>
+            物語の世界へ。
+            オリジナルストーリーや創作作品。
+          </p>
+          <span class="coming-soon">準備中</span>
+        </article>
+
+        <article class="content-card">
+          <span class="card-number">02 / ILLUSTRATION</span>
+          <div class="card-icon">🎨</div>
+          <h3>イラスト</h3>
+          <p>
+            キャラクターや風景など、
+            さまざまなイラスト作品。
+          </p>
+          <span class="coming-soon">準備中</span>
+        </article>
+
+        <article class="content-card">
+          <span class="card-number">03 / VIDEO</span>
+          <div class="card-icon">🎬</div>
+          <h3>動画</h3>
+          <p>
+            動画作品や制作した映像、
+            さまざまな活動記録。
+          </p>
+          <span class="coming-soon">準備中</span>
+        </article>
+
+
+<a href="goods.html" class="content-card">
+    <span class="card-number">04 / GOODS</span>
+    <div class="card-icon">🎁</div>
+    <h3>グッズ</h3>
+    <p>
+        オリジナルキャラクターや
+        創作作品のグッズ。
+    </p>
+    <span class="coming-soon">ショップを見る →</span>
+</a>
+        <article class="content-card">
+          <span class="card-number">05 / GAME</span>
+          <div class="card-icon">🌱</div>
+          <h3>ゲーム</h3>
+          <p>
+            オリジナルのゲームや、楽しく遊べる作品。
+          </p>
+          <span class="coming-soon">準備中</span>
+        </article>
+
+      </div>
+
+    </section>
+
+    <!-- プロフィール -->
+
+    <section class="about" id="about">
+
+      <div class="about-inner">
+
+        <div class="section-heading">
+          <span>ABOUT</span>
+          <h2>Wind Wingについて</h2>
+        </div>
+
+        <div class="about-box">
+
+          <p class="about-name">結城朱煉</p>
+
+          <p class="about-text">
+            Wind Wingは、自由な発想と創作を楽しむ
+            クリエイティブアトリエです。
+          </p>
+
+          <p class="about-text">
+            小説、イラスト、動画、音楽など、
+            ジャンルにとらわれず、
+            自分の好きな世界を形にしていきます。
+          </p>
+
+          <p class="about-text">
+            自由な翼で、いくつもの世界へ。
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- フッター -->
+
+  <footer>
+    <div class="footer-logo">Wind Wing</div>
+    <p>自由な翼で、いくつもの世界へ。</p>
+    <p>© 2026 Wind Wing / 結城朱煉</p>
+  </footer>
+
+</body>
+</html>

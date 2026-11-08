@@ -1,0 +1,893 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Wind Wingのオリジナルイラストギャラリー。Kigurumi Kidsや小説関連の作品を展示しています。">
+  <title>イラスト | Wind Wing</title>
+
+  <style>
+    :root {
+      --blue: #65a9c8;
+      --teal: #65b7ad;
+      --dark: #354d5b;
+      --muted: #71838d;
+      --border: #dce9ed;
+      --light: #f3f9fb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", sans-serif;
+      color: var(--dark);
+      background: linear-gradient(180deg, #f5fbfd 0%, #ffffff 45%);
+      line-height: 1.8;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: auto;
+      padding: 18px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      color: var(--blue);
+    }
+
+    nav {
+      display: flex;
+      gap: 24px;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: var(--teal);
+    }
+
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 65px 24px 90px;
+    }
+
+    .page-heading {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .page-heading .english {
+      color: var(--teal);
+      font-size: 13px;
+      letter-spacing: 4px;
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: clamp(30px, 5vw, 42px);
+      margin: 8px 0 14px;
+      letter-spacing: 3px;
+    }
+
+    .page-heading p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .category-tabs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 42px;
+    }
+
+    .category-button {
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--dark);
+      border-radius: 999px;
+      padding: 11px 24px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .category-button:hover,
+    .category-button.active {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: white;
+    }
+
+    .gallery-section {
+      display: none;
+    }
+
+    .gallery-section.active {
+      display: block;
+    }
+
+    .section-heading {
+      margin-bottom: 28px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: 25px;
+    }
+
+    .section-heading p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .art-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(65, 110, 130, 0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .art-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(65, 110, 130, 0.12);
+    }
+
+    .art-image-button {
+      display: block;
+      width: 100%;
+      padding: 0;
+      border: none;
+      background: var(--light);
+      cursor: pointer;
+    }
+
+    .art-image {
+      display: block;
+      width: 100%;
+      height: 240px;
+      object-fit: contain;
+    }
+
+    .art-info {
+      padding: 18px 20px 22px;
+    }
+
+    .art-info h3 {
+      margin: 0 0 6px;
+      font-size: 17px;
+    }
+
+    .art-info p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .product-link {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 7px 15px;
+      border-radius: 999px;
+      background: #eaf7f5;
+      color: #327f77;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .product-link:hover {
+      background: #d5eeea;
+    }
+
+    .empty-message {
+      text-align: center;
+      padding: 60px 20px;
+      border: 1px dashed #c6dce3;
+      border-radius: 18px;
+      color: var(--muted);
+      background: white;
+    }
+
+    .shop-guide {
+      margin-top: 75px;
+      padding: 38px 24px;
+      text-align: center;
+      background: linear-gradient(135deg, #eef8fb, #effaf6);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+    }
+
+    .shop-guide h2 {
+      margin: 0 0 10px;
+      font-size: 23px;
+    }
+
+    .shop-guide p {
+      color: var(--muted);
+      margin: 0 0 22px;
+    }
+
+    .main-button {
+      display: inline-block;
+      padding: 12px 28px;
+      background: var(--blue);
+      color: white;
+      border-radius: 999px;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .main-button:hover {
+      background: var(--teal);
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 42px;
+      color: var(--blue);
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* 画像拡大表示 */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(16, 30, 40, 0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 60px 20px 30px;
+      z-index: 1000;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 95%;
+      max-height: 75vh;
+      object-fit: contain;
+    }
+
+    .lightbox-caption {
+      color: white;
+      margin-top: 18px;
+      text-align: center;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      border: none;
+      background: transparent;
+      color: white;
+      font-size: 36px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 850px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 550px) {
+      .header-inner {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .art-image {
+        height: 280px;
+      }
+
+      main {
+        padding-top: 45px;
+      }
+
+      .category-button {
+        padding: 9px 15px;
+        font-size: 13px;
+      }
+    }
+ /* Kigurumi Kids サブカテゴリー */
+.subcategory-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0 24px;
+}
+
+.subcategory-button {
+  padding: 10px 18px;
+  border: 1px solid #cfe4ec;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #486779;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.subcategory-button:hover {
+  background: #eaf6fa;
+  border-color: #83bed3;
+}
+
+.subcategory-button.active {
+  background: #65accb;
+  border-color: #65accb;
+  color: #ffffff;
+}
+
+.subcategory-button:focus-visible {
+  outline: 3px solid #90d6e8;
+  outline-offset: 3px;
+} 
+
+/* 複数画像の切り替えボタン */
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  color: #35677e;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.lightbox-prev {
+  left: 16px;
+}
+
+.lightbox-next {
+  right: 16px;
+}
+
+.lightbox-nav:hover {
+  background: #bfe9f5;
+}
+
+.lightbox-nav[hidden] {
+  display: none;
+}</style>
+</head>
+
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">Wind Wing</a>
+      <nav aria-label="メインメニュー">
+        <a href="index.html">HOME</a>
+        <a href="index.html#contents">CONTENTS</a>
+        <a href="index.html#about">ABOUT</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <div class="page-heading">
+      <div class="english">ILLUSTRATIONS</div>
+      <h1>イラスト</h1>
+      <p>
+        オリジナルキャラクターや動物たちのイラストを展示しています。<br>
+        いろいろな世界を、ゆっくり楽しんでいってください。
+      </p>
+    </div>
+
+    <!-- カテゴリー切り替え -->
+    <div class="category-tabs" role="group" aria-label="イラストカテゴリー">
+      <button class="category-button active"
+              data-category="kigurumi"
+              aria-pressed="true">
+        Kigurumi Kids
+      </button>
+
+      <button class="category-button"
+              data-category="novel"
+              aria-pressed="false">
+        小説関連
+      </button>
+
+      <button class="category-button"
+              data-category="other"
+              aria-pressed="false">
+        その他のイラスト
+      </button>
+    </div>
+
+    <!-- Kigurumi Kids -->
+    <section class="gallery-section active" id="kigurumi">
+
+      <div class="section-heading">
+        <h2>Kigurumi Kids</h2>
+        <p>ナギ・トワ・ヒナタたちの着ぐるみイラスト。</p>
+      </div><!-- Kigurumi Kids サブカテゴリー -->
+<div class="subcategory-tabs" role="group" aria-label="Kigurumi Kidsの作品分類">
+
+  <button class="subcategory-button active"
+          data-subcategory="character"
+          aria-pressed="true">
+    キャラクターイラスト
+  </button>
+
+  <button class="subcategory-button"
+          data-subcategory="video"
+          aria-pressed="false">
+    動画で使用したイラスト
+  </button>
+
+  <button class="subcategory-button"
+          data-subcategory="wallpaper"
+          aria-pressed="false">
+    壁紙
+  </button>
+
+</div>
+
+      <div class="gallery-grid" id="kigurumi-gallery">
+        <!-- ここにイラストを追加していきます -->
+      </div>
+
+      <div class="empty-message" id="kigurumi-empty">
+        イラストを準備中です。<br>
+        これから少しずつ作品を追加していきます♪
+      </div>
+
+    </section>
+
+    <!-- 小説関連 -->
+    <section class="gallery-section" id="novel">
+
+      <div class="section-heading">
+        <h2>小説関連</h2>
+        <p>オリジナル小説のキャラクターや挿絵を紹介します。</p>
+      </div>
+
+      <div class="gallery-grid" id="novel-gallery"></div>
+
+      <div class="empty-message" id="novel-empty">
+        イラストを準備中です。
+      </div>
+
+    </section>
+
+    <!-- その他 -->
+    <section class="gallery-section" id="other">
+
+      <div class="section-heading">
+        <h2>その他のイラスト</h2>
+        <p>動物など、さまざまなオリジナルイラストを展示します。</p>
+      </div>
+
+      <div class="gallery-grid" id="other-gallery"></div>
+
+      <div class="empty-message" id="other-empty">
+        イラストを準備中です。
+      </div>
+
+    </section>
+
+    <!-- グッズページへの案内 -->
+    <section class="shop-guide">
+      <h2>オリジナルグッズも販売中♪</h2>
+      <p>
+        イラストを使ったオリジナルグッズや壁紙も販売しています。<br>
+        気になる方は、ぜひショップをのぞいてみてください。
+      </p>
+
+      <a href="goods.html" class="main-button">
+        グッズページを見る →
+      </a>
+    </section>
+
+    <a href="index.html" class="back-link">
+      ← トップページに戻る
+    </a>
+
+  </main>
+
+ <!-- 画像拡大ウィンドウ -->
+<div class="lightbox"
+     id="lightbox"
+     role="dialog"
+     aria-modal="true"
+     aria-label="イラストの拡大表示"
+     aria-hidden="true">
+
+  <button class="lightbox-close"
+          id="lightbox-close"
+          aria-label="閉じる">×</button>
+
+  <button class="lightbox-nav lightbox-prev"
+          id="lightbox-prev"
+          aria-label="前の画像"
+          hidden>❮</button>
+
+  <img id="lightbox-image" src="" alt="">
+
+  <button class="lightbox-nav lightbox-next"
+          id="lightbox-next"
+          aria-label="次の画像"
+          hidden>❯</button>
+
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
+
+  <footer>
+    © Wind Wing / 結城朱煉
+  </footer>
+
+  <script>
+    // カテゴリー切り替え
+    const categoryButtons = document.querySelectorAll(".category-button");
+    const gallerySections = document.querySelectorAll(".gallery-section");
+
+    categoryButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const category = button.dataset.category;
+
+        categoryButtons.forEach(item => {
+          const active = item === button;
+          item.classList.toggle("active", active);
+          item.setAttribute("aria-pressed", String(active));
+        });
+
+        gallerySections.forEach(section => {
+          section.classList.toggle("active", section.id === category);
+        });
+      });
+    });
+
+    // イラスト登録データ
+    // 画像を追加するときは、この配列に作品情報を登録します。
+    
+const illustrations = [
+  {
+    category: "kigurumi",
+    subcategory: "character",
+    title: "ナギ｜うさぎの着ぐるみ",
+    description: "Kigurumi Kids",
+    image: "images/kigurumi/character/nagi-usagi01.png",
+    productUrl: ""
+  },
+  {
+    category: "kigurumi",
+    subcategory: "character",
+    title: "ナギ｜ヘビの着ぐるみ",
+    description: "Kigurumi Kids",
+    image: "images/kigurumi/character/nagi-hebi01.png",
+    productUrl: ""
+  },
+  {
+    category: "kigurumi",
+    subcategory: "character",
+    title: "ナギ｜イヌの着ぐるみ",
+    description: "Kigurumi Kids",
+    image: "images/kigurumi/character/nagi-inu01.png",
+    productUrl: ""
+  },
+  {
+    category: "kigurumi",
+    subcategory: "character",
+    title: "ナギ｜ネコの着ぐるみ",
+    description: "Kigurumi Kids",
+    image: "images/kigurumi/character/nagi-neko01.png",
+    productUrl: ""
+  },
+  {
+    category: "kigurumi",
+    subcategory: "character",
+    title: "ナギ｜リュウの着ぐるみ",
+    description: "Kigurumi Kids",
+    image: "images/kigurumi/character/nagi-ryuu01.png",
+    productUrl: ""
+  },
+  {
+    category: "kigurumi",
+    subcategory: "character",
+    title: "トワ｜トラの着ぐるみ",
+    description: "Kigurumi Kids",
+    image: "images/kigurumi/character/towa-tora01.png",
+    productUrl: ""
+  },
+  {
+    category: "kigurumi",
+    subcategory: "character",
+    title: "トワ｜ウシの着ぐるみ",
+    description: "Kigurumi Kids",
+    image: "images/kigurumi/character/towa-usi01.png",
+    productUrl: ""
+  },
+  {
+    category: "kigurumi",
+    subcategory: "character",
+    title: "ヒナタ｜ネズミの着ぐるみ",
+    description: "Kigurumi Kids",
+    image: "images/kigurumi/character/hinata-nezumi01.png",
+    productUrl: ""
+  },
+{
+  category: "kigurumi",
+  subcategory: "video",
+  title: "キャラクター紹介 第1弾",
+  description: "ナギ・トワ・ヒナタのキャラクター紹介",
+  image: "images/kigurumi/video/character-intro-01/01-cover.png",
+  productUrl: "",
+  images: [
+    "images/kigurumi/video/character-intro-01/01-cover.png",
+    "images/kigurumi/video/character-intro-01/02-nagi.png",
+    "images/kigurumi/video/character-intro-01/03-towa.png",
+    "images/kigurumi/video/character-intro-01/04-hinata.png",
+    "images/kigurumi/video/character-intro-01/05-group.png"
+  ]
+},
+{
+  category: "kigurumi",
+  subcategory: "wallpaper",
+  title: "うさぎの子とにんじん畑",
+  description: "ナギのスマホ用・PC用（16:9）壁紙セット。SUZURIで販売中♪",
+  image: "images/kigurumi/wallpaper/usagi-ninjinbatake-sample.png",
+  productUrl: "https://suzuri.jp/syurenn0817/digital_products/160238"
+}
+];
+
+
+
+    // HTMLに文字列を安全に表示するための処理
+    function escapeHTML(value) {
+      return String(value).replace(/[&<>"']/g, character => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      }[character]));
+    }
+
+    // ギャラリーを生成
+    let currentSubcategory = "character";
+    function renderGallery() {
+      const categories = ["kigurumi", "novel", "other"];
+
+      categories.forEach(category => {
+        const gallery = document.getElementById(category + "-gallery");
+        const empty = document.getElementById(category + "-empty");
+
+       const works = illustrations.filter(work =>
+  work.category === category &&
+  (
+    category !== "kigurumi" ||
+    (work.subcategory || "character") === currentSubcategory
+  )
+);
+
+        gallery.innerHTML = works.map((work, index) => `
+          <article class="art-card">
+            <button class="art-image-button"
+                    data-category="${category}"
+                    data-index="${index}"
+                    aria-label="${escapeHTML(work.title)}を拡大">
+              <img class="art-image"
+                   src="${escapeHTML(work.image)}"
+                   alt="${escapeHTML(work.title)}"
+                   loading="lazy">
+            </button>
+
+            <div class="art-info">
+  <h3>${escapeHTML(work.title)}</h3>
+  <p>${escapeHTML(work.description)}</p>
+
+  ${Array.isArray(work.images) && work.images.length > 1 ? `
+    <p class="image-count">
+      📚 全${work.images.length}枚｜クリックして見る
+    </p>
+  ` : ""}
+
+              ${work.productUrl ? `
+                <a class="product-link"
+                   href="${escapeHTML(work.productUrl)}"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                  SUZURIで壁紙を見る ↗
+                </a>
+              ` : ""}
+            </div>
+          </article>
+        `).join("");
+
+        empty.style.display = works.length ? "none" : "block";
+      });
+
+      // 拡大表示のイベント
+      document.querySelectorAll(".art-image-button").forEach(button => {
+        button.addEventListener("click", () => {
+          const category = button.dataset.category;
+          const index = Number(button.dataset.index);
+          const works = illustrations.filter(work =>
+  work.category === category &&
+  (
+    category !== "kigurumi" ||
+    (work.subcategory || "character") === currentSubcategory
+  )
+);
+          openLightbox(works[index]);
+        });
+      });
+    }
+
+// Kigurumi Kids サブカテゴリー切り替え
+document.querySelectorAll(".subcategory-button").forEach(button => {
+  button.addEventListener("click", () => {
+    currentSubcategory = button.dataset.subcategory;
+
+    document.querySelectorAll(".subcategory-button").forEach(btn => {
+      const active = btn === button;
+      btn.classList.toggle("active", active);
+      btn.setAttribute("aria-pressed", String(active));
+    });
+
+    renderGallery();
+  });
+});
+
+  
+    // 画像の拡大表示
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightbox-image");
+    const lightboxCaption = document.getElementById("lightbox-caption");
+    const lightboxClose = document.getElementById("lightbox-close");
+
+    let previousFocus = null;
+let currentImages = [];
+let currentImageIndex = 0;
+let currentWorkTitle = "";
+const lightboxPrev = document.getElementById("lightbox-prev");
+const lightboxNext = document.getElementById("lightbox-next");
+
+// 現在の画像を表示
+function updateLightboxImage() {
+  lightboxImage.src = currentImages[currentImageIndex];
+
+  const multiple = currentImages.length > 1;
+
+  lightboxPrev.hidden = !multiple;
+  lightboxNext.hidden = !multiple;
+
+  if (multiple) {
+    lightboxCaption.textContent =
+      `${currentWorkTitle}（${currentImageIndex + 1} / ${currentImages.length}）`;
+  } else {
+    lightboxCaption.textContent = currentWorkTitle;
+  }
+}
+
+// 前後の画像に切り替える
+function changeLightboxImage(direction) {
+  if (currentImages.length <= 1) return;
+
+  currentImageIndex =
+    (currentImageIndex + direction + currentImages.length) % currentImages.length;
+
+  updateLightboxImage();
+}
+
+lightboxPrev.addEventListener("click", () => changeLightboxImage(-1));
+lightboxNext.addEventListener("click", () => changeLightboxImage(1));    
+function openLightbox(work) {
+  if (!work) return;
+
+  previousFocus = document.activeElement;
+
+  // 複数画像がある作品は全画像、通常作品は1枚だけ
+  currentImages = Array.isArray(work.images) && work.images.length
+    ? work.images
+    : [work.image];
+
+  currentImageIndex = 0;
+currentWorkTitle = work.title;
+
+lightboxImage.alt = work.title;
+updateLightboxImage();
+
+  lightbox.classList.add("open");
+  lightbox.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+  lightboxClose.focus();
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove("open");
+      lightbox.setAttribute("aria-hidden", "true");
+      lightboxImage.removeAttribute("src");
+      document.body.style.overflow = "";
+      if (previousFocus) previousFocus.focus();
+    }
+
+    lightboxClose.addEventListener("click", closeLightbox);
+
+    lightbox.addEventListener("click", event => {
+      if (event.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener("keydown", event => {
+      if (!lightbox.classList.contains("open")) return;
+
+      if (event.key === "Escape") {
+        closeLightbox();
+      }
+
+      if (event.key === "Tab") {
+        event.preventDefault();
+        lightboxClose.focus();
+      }
+    });
+
+    renderGallery();
+  </script>
+
+</body>
+</html>
