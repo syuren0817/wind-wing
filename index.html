@@ -7,7 +7,68 @@
   <meta name="description" content="Wind Wing - 結城朱煉の総合創作サイト。自由な翼で、いくつもの世界へ。">
   <title>Wind Wing｜結城朱煉 Creative Atelier</title>
 
-  <style>
+  
+/* 更新履歴 */
+
+.news-section {
+  background: #F7FAFC;
+  border-bottom: 1px solid var(--gray);
+}
+
+.news-list {
+  max-width: 850px;
+  margin: 0 auto;
+  background: var(--white);
+  border: 1px solid var(--gray);
+  border-radius: 15px;
+  padding: 10px 30px;
+}
+
+.news-item {
+  display: flex;
+  align-items: baseline;
+  gap: 25px;
+  padding: 17px 0;
+  border-bottom: 1px solid var(--gray);
+}
+
+.news-item:last-child {
+  border-bottom: none;
+}
+
+.news-date {
+  color: var(--teal);
+  font-size: 13px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.news-text {
+  margin: 0;
+  font-size: 14px;
+}
+
+.news-text a {
+  color: var(--teal);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.news-text a:hover {
+  opacity: 0.7;
+}
+
+@media (max-width: 700px) {
+  .news-list {
+    padding: 10px 20px;
+  }
+
+  .news-item {
+    flex-direction: column;
+    gap: 3px;
+  }
+}
+<style>
     :root {
       --white: #FFFFFF;
       --gray: #E9EDF0;
@@ -371,11 +432,14 @@
     <div class="header-inner">
       <a href="#" class="logo">Wind Wing</a>
 
-      <nav>
-        <a href="#home">HOME</a>
-        <a href="#contents">CONTENTS</a>
-        <a href="#about">ABOUT</a>
-      </nav>
+      
+<nav>
+  <a href="#home">HOME</a>
+  <a href="#news">NEWS</a>
+  <a href="#contents">CONTENTS</a>
+  <a href="#about">ABOUT</a>
+</nav>
+
     </div>
   </header>
 
@@ -407,6 +471,31 @@
       </div>
     </section>
 
+    <!-- 更新履歴 -->
+
+    <section class="section news-section" id="news">
+
+      <div class="section-heading">
+        <span>WHAT'S NEW</span>
+        <h2>更新履歴</h2>
+        <p>Wind Wingの最新情報をお届けします。</p>
+      </div>
+
+      <div class="news-list">
+
+        <div class="news-item">
+          <time class="news-date" datetime="2026-11-08">
+            2026.11.08
+          </time>
+          <p class="news-text">
+            Wind Wingを公開しました！
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
     <!-- コンテンツ -->
 
     <section class="section" id="contents">
@@ -415,7 +504,7 @@
         <span>CONTENTS</span>
         <h2>創作の世界</h2>
         <p>
-          Wind Wingで展開する、6つの創作ジャンル。
+          Wind Wingで展開する、5つの創作ジャンル。
         </p>
       </div>
 
